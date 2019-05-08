@@ -99,6 +99,18 @@ const MyTab = TabNavigator({
     'tabTitle': '首页',
     'icon_normal': tabBar_detail_n,
     'icon_select': tabBar_detail_s,
+  }),
+  Mine: getController({
+    screenName: Mine,
+    navTitle: '我的',
+    isLeft: false,
+    isRight: false,
+    isBig: false,
+    tabTitle: '我的',
+    navFontSize: NAVIGATION_FONT_SIZE,
+    isGestures: false,
+    icon_normal: tabBar_mine_n,
+    icon_select: tabBar_mine_s
   })
 }, {
   tabBarPosition: 'bottom', // 设置tabbar的位置，iOS默认在底部，安卓默认在顶部。（属性值：'top'，'bottom')

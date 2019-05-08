@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest } from 'redux-saga'
+import { takeEvery, takeLatest, delay} from 'redux-saga'
 import { call, put, all } from 'redux-saga/effects'
 import { Save, DateManager } from '../../common/index';
 import {
@@ -10,13 +10,16 @@ import {
     arrangeChartData,
 } from './DataApi';
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+// const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 // 初始化
 function* initializationDataSaga(ret) {
     // 数据库
     yield call(initialization);
-    yield call(delay, 1000)
+    
+    yield delay(1000)
+    // yield call(delay, 1000)
+    
     // 分类, 记账
     const [category, account] = yield all([
         call(loadCategory),
@@ -30,6 +33,7 @@ function* initializationDataSaga(ret) {
         call(arrangeHomeData, account),
         call(arrangeChartData, account),
     ])
+    console.log(homeData)
     // 初始化
     yield put({
         type: 'initializationDataAction', 

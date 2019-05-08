@@ -11,6 +11,16 @@ import { BackDefaultColor, TitleColor } from '../../utils/UIUtils';
 
 class Table extends Component {
 
+  static propTypes = {
+    onMomentumScrollEnd: PropTypes.func,
+    onPress: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onMomentumScrollEnd: ()=>{},
+    onPress: ()=>{},
+  }
+
   scrollWithPage(page) {
     this.refs.scroll.scrollTo({x: 0, y: page * (ScreenHeight - 64 - 54 - 50), animated: false})
     this.props.onMomentumScrollEnd(parseInt(page));
@@ -159,15 +169,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
   }
 });
-
-
-Table.defaultProps = {
-  onMomentumScrollEnd: ()=>{},
-  onPress: ()=>{},
-}
-Table.propTypes = {
-  onMomentumScrollEnd: PropTypes.func,
-  onPress: PropTypes.func,
-}
 
 export default Table;

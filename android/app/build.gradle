@@ -138,6 +138,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-svg')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-picker')
     implementation project(':@react-native-community_async-storage')
     implementation project(':realm')
     implementation fileTree(dir: "libs", include: ["*.jar"])

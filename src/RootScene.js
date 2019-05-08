@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Remote debugger']);
 
 import { 
     InteractionManager,
@@ -14,11 +16,11 @@ import SplashScreen from 'react-native-splash-screen'
 class RootScene extends Component {
 
     componentDidMount() {
-      // this.timer = setTimeout(() => {
-      //   InteractionManager.runAfterInteractions(() => {
-      //       SplashScreen.hide();
-      //   });
-      // }, 1000);
+      this.timer = setTimeout(() => {
+        InteractionManager.runAfterInteractions(() => {
+            SplashScreen.hide();
+        });
+      }, 1000);
     }
     render() {
       return (

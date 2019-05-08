@@ -21,6 +21,18 @@ import { ScreenWidth, ScreenHeight, StreamColor } from '../../utils/index';
 
 class ThirdPicker extends Component {
 
+  static defaultProps = {
+    onPickerConfirm: ()=>{},
+    onPickerCancel: ()=>{},
+    onPickerSelect: ()=>{},
+  }
+
+  static propTypes = {
+    onPickerConfirm: PropTypes.func,
+    onPickerCancel: PropTypes.func,
+    onPickerSelect: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -195,20 +207,22 @@ class ThirdPicker extends Component {
 
     });
   }
+  hideHandler = ()=> {
+    console.log("onHide");
+    this.hide();
+  }
   render() {
     return (
       <TouchableOpacity style={[styles.container,{
-                                  display: this.state.display,
-                                  top: this.props.top ? this.props.top : 0
-                                }]} activeOpacity={1}>
+                                  display: this.state.display, 
+                                  position: this.state.display!=='none'?'absolute':'relative', 
+                                  top: this.props.top?this.props.top:0
+                                }]} activeOpacity={1} onPress={this.hideHandler}>
         <Animated.View 
           style={[
-              styles.container, {
+              styles.containerView, {
               opacity: this.state.opacity, 
-              display: this.state.display,
-              backgroundColor: 'rgba(50,50,50,0.4)',
-              flex: 1,
-              top: 0
+              display: this.state.display
             }
           ]} >
         </Animated.View>
@@ -223,23 +237,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
+    position: 'relative',
     left: 0,
     right: 0,
     bottom: 0,
+    //backgroundColor: 'rgba(50,50,50,0.4)',
+  },
+
+  containerView: {
+    width: ScreenWidth,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0, 
+    top:0,
+    backgroundColor: 'rgba(50,50,50,0.4)',
+    flex: 1
   }
 });
-
-ThirdPicker.defaultProps = {
-  onPickerConfirm: ()=>{},
-  onPickerCancel: ()=>{},
-  onPickerSelect: ()=>{},
-}
-ThirdPicker.propTypes = {
-  onPickerConfirm: PropTypes.func,
-  onPickerCancel: PropTypes.func,
-  onPickerSelect: PropTypes.func,
-}
 
 // 连接组件 
 export default ThirdPicker;

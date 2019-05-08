@@ -68,7 +68,7 @@ class Cell extends Component {
       return (
         <View style={styles.right}>
           <Switch 
-            onTintColor={StreamColor}
+            trackColor={StreamColor}
             value={this.state.isSwitch}
             onValueChange={this._onValueChange}
           />

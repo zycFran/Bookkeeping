@@ -30,6 +30,7 @@ class Home extends Component {
   }
   componentDidMount() {
     const { DataAction } = this.props;
+    console.log(DataAction);
     DataAction.initializationDataSaga();
     // 界面
     // this.timer = setTimeout(()=>{
@@ -43,7 +44,6 @@ class Home extends Component {
   }
   _onHeaderClick=()=>{
     console.log("_onHeaderClick")
-    debugger
    this.refs.picker.show(3);
   }
   _onScrollDidEnd=(page)=>{
@@ -72,7 +72,6 @@ class Home extends Component {
     },1000);
   }
   _onPress=(item)=>{
-    console.log(item);
     Save.loadDetail((isDetail)=>{
       if (isDetail == true) {
         const { navigate } = this.props.navigation;
@@ -145,9 +144,9 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* {this.nav()} */}
+        {this.nav()}
         {this.header()}
-        {/* {this.state.needsComponent ? this.table() : null} */}
+        {this.state.needsComponent ? this.table() : null}
         {this.state.needsComponent ? this.picker() : null}
         {/* {this.state.needsComponent ? this.toast() : null} */}
       </View>

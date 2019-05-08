@@ -178,6 +178,7 @@ class Category {
     // 初始化
     // 1.如果没有添加默认分类: 添加默认分类
     static initialization() {
+        console.log("Category initialization")
         Category.isInitialization((isInit)=>{
             if (isInit == false) {
                 StorageManager.saveWithKey(CATEGORY_TABLE, '123123', 1000 * 60 * 24 * 365); 
@@ -288,8 +289,43 @@ class Account {
         newData.param = Account.arrangeHomeDayData(newData.param);
         return newData;
     }
-    static arrangeHomeMonthData(data) {
+    static arrangeHomeMonthData(pd) {
         let param = {};
+        let data = [
+            {
+                id: 1,
+                year: 2019,
+                month: 5,
+                name: '购物',
+                day: 1,
+                inmax: 10,
+                exMax: 20,
+                inEx: 20,
+                money: 5
+            },
+            {
+                id: 11,
+                year: 2019,
+                month: 5,
+                name: '购物',
+                day: 1,
+                inmax: 10,
+                exMax: 20,
+                inEx: 20,
+                money: 5
+            },
+            {
+                id: 2,
+                year: 2019,
+                month: 5,
+                name: '购物',
+                day: 2,
+                inmax: 10,
+                exMax: 20,
+                inEx: 20,
+                money: 5
+            }
+        ]
         if (data && data.length != 0) {
             var max = data[0];
             var min = data[0];

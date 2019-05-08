@@ -8,7 +8,6 @@ import { ScreenWidth, ScreenHeight, StreamColor, TitleColor } from '../../utils/
 import { BackDefaultColor } from '../../utils/UIUtils';
 
 class Cell extends Component {
-  
 
   render() {
     return (

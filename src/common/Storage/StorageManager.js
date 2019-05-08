@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 class StorageManager {
   // 初始化
   static initialization() {
+    console.log("StorageManager initialization")
     var storage = new Storage({
       // 最大存储
       size: 10000,

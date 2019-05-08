@@ -10,6 +10,7 @@ var realm;
 class RealmDemo {
   // 初始化数据
   static initialization() {
+    console.log("RealmDemo initialization")
     // 分类, 被删除分类
     let category = [CATEGORY_TABLE, CATEGORY_DELETE_TABLE];
     let schemas = RealmDemo.initCategory();

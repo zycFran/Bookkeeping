@@ -6,66 +6,78 @@ import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react
 import { ScreenWidth, ScreenHeight, StreamColor } from '../../utils/index';
 
 class Header extends Component {
-  componentDidMount(){
-
-
+  static propTypes = {
+    year: PropTypes.number,
+    month: PropTypes.number,
+    onPress: PropTypes.func,
   }
-  _onPress = ()=>{
-    console.log(1);
+
+  static defaultProps = {
+    year: 0,
+    month: 0,
+    onPress: () => {
+      console.log(1);
+    }
+  }
+  _onPress = () => {
+
   }
   top() {
-    let title = [this.props.year+"年", "收入", "支出"];
+    let title = [this.props.year + "年", "收入", "支出"];
     let arr = [];
-    for (let i=0; i<3; i++) {
-      arr.push (
-        <View key={i} style={{flex: i == 0 ? 3 : 4}}>
+    for (let i = 0; i < 3; i++) {
+      arr.push(
+        <View key={i} style={{ flex: i == 0 ? 3 : 4 }}>
           <Text style={styles.text}>{title[i]}</Text>
         </View>
       )
     }
     return arr;
   }
+
+
+
   bottom() {
     let arr = [];
     let me = this;
-    for (let i=0; i<4; i++) {
+    for (let i = 0; i < 4; i++) {
       // 月份
       if (i == 0) {
-        arr.push (
-          <TouchableOpacity 
-            key={i} 
-            style={styles.one} 
-            activeOpacity={0.8}
+        arr.push(
+          <TouchableOpacity
+            key={i}
+            style={styles.one}
+            activeOpacity={1}
             onPress={this.props.onPress}
           >
-            <View style={styles.oneV}>
+            <View style={styles.oneV} >
               <Text style={styles.oneLeft}>{this.props.month}</Text>
               <Text style={styles.oneRight}>月</Text>
-              <Image 
-                resizeMode={"contain"} 
-                style={styles.oneIcon} 
+              <Image
+                resizeMode={"contain"}
+                style={styles.oneIcon}
                 source={require('../../assets/images/time_down.png')}
               />
             </View>
           </TouchableOpacity>
         )
-      } 
+      }
       // 线
       else if (i == 1) {
-        arr.push (
-          <View key={i} style={styles.line}/>
+        arr.push(
+          <View key={i} style={styles.line} />
         )
-      } 
+      }
       // 收入/支出
       else {
         let inEx = i == 2 ? this.props.ex : this.props.in;
-        arr.push (
+        arr.push(
           <View key={i} style={styles.two}>
             <Text style={styles.twoText}>{inEx}</Text>
           </View>
         )
       }
-    } 
+    }
     return arr;
   }
   render() {
@@ -110,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   one: {
-    flex: 3, 
+    flex: 3,
     flexDirection: 'row',
     alignItems: 'flex-end',
   },
@@ -155,19 +167,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
   }
 });
-
-Header.defaultProps = {
-  year: 0,
-  month: 0,
-  onPress: ()=>{
-    console.log(1);
-  }
-}
-Header.propTypes = {
-  year: PropTypes.number,
-  month: PropTypes.number,
-  onPress: PropTypes.func,
-}
 
 
 // 连接组件
