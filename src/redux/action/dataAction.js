@@ -1,7 +1,6 @@
 
 
 let actions = {
-    
     // 初始化分类数据
     initializationDataSaga: ()=>({
         type: "initializationDataSaga",
@@ -10,8 +9,7 @@ let actions = {
     saveAccountSaga: (data)=>({
         type: "saveAccountSaga",
         data: data,
-    }),
-
+    })
 }
 
 

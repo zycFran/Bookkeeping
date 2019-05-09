@@ -15,11 +15,17 @@ class Header extends Component {
     }
   }
   componentDidMount() {
-    Save.loadPunchContinuous((data)=>{
+    Save.getPunch().loadPunchContinuous((data)=>{
       this.setState({
         punchContinuous: data
       })
     })
+
+    setTimeout(()=>{
+      this.setState({
+        punchContinuous: 100
+      })
+    },5000)
   }
   _onClickBadge=(oldBadge, newBadge)=>{
     if (oldBadge != newBadge) {

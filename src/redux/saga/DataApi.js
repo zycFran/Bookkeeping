@@ -5,7 +5,6 @@ import { Save } from '../../common/index';
 // 初始化
 export function initialization() {
     return new Promise((resolve) => {
-        console.log("Save initialization")
         Save.initialization();
         resolve();
     });

@@ -17,7 +17,7 @@ function* initializationDataSaga(ret) {
     // 数据库
     yield call(initialization);
     
-    yield delay(1000)
+    // yield delay(1000)
     // yield call(delay, 1000)
     
     // 分类, 记账
@@ -33,7 +33,7 @@ function* initializationDataSaga(ret) {
         call(arrangeHomeData, account),
         call(arrangeChartData, account),
     ])
-    console.log(homeData)
+
     // 初始化
     yield put({
         type: 'initializationDataAction', 
@@ -74,6 +74,7 @@ function* saveAccountSaga(ret) {
         chartData: chartData,
     });
 }
+
 // 更新数据范围
 function* updateDateSaga(ret) {
 

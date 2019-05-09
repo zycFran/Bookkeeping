@@ -11,51 +11,43 @@ import { Navigation, BackgroundView, Share, Save, ThirdPicker } from '../../comm
 import { IS_PUNCH, PUNCH_CONTINUOUS, ACCOUNT_TOTAL } from '../../common/SaveManager/SaveEnum';
 // Utils
 import MineModal from './MineModal';
+import TableComponent from './Table';
 import { MINE_JSON } from '../../assets/json/AccountJson';
 import { ScreenWidth, ScreenHeight, StreamColor, BackDefaultColor } from '../../utils/index';
 
-let TableComponent = null;
 class Mine extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      needsComponent: false,
       opacityAnim: new Animated.Value(0),
       // 打卡总次数
       punchContinuous: 0,
     }
   }
   componentDidMount() {
+    console.log("Mine componentDidMount")
     const { DataAction } = this.props;
     DataAction.initializationDataSaga();
-    // 界面
-    this.timer = setTimeout(()=>{
-      if (TableComponent == null) {
-        TableComponent = require('./Table').default;
-      }
-      this.setState(() => ({
-        needsComponent: true,
-      }));
-    },300);
+
   }
   componentWillUnmount() {
     this.timer && clearInterval(this.timer);
   }
 
   // 打卡
-  _onClickBadge=(oldBadge, newBadge)=>{
+  _onClickBadge = (oldBadge, newBadge) => {
     const { DataAction } = this.props;
     if (oldBadge != newBadge) {
       Save.startPunch();
       this.refs.mineModal.show();
     } else {
       const { navigate } = this.props.navigation;
-      navigate('Flaunt', {title: '晒成就', type: 0});
+      navigate('Flaunt', { title: '晒成就', type: 0 });
     }
   }
   // Cell
-  _onPress=(item)=>{
+  _onPress = (item) => {
     const { navigate } = this.props.navigation;
     if (item.section == 0) {
       // 徽章
@@ -75,11 +67,11 @@ class Mine extends Component {
       }
       // 声音开关
       else if (item.row == 2) {
-        
+
       }
       // 明细详情
       else if (item.row == 3) {
-        
+
       }
     } else if (item.section == 2) {
       // 升级至专业版
@@ -96,7 +88,7 @@ class Mine extends Component {
       }
       // 意见反馈
       else if (item.row == 3) {
-        
+
       }
       // 帮助
       else if (item.row == 4) {
@@ -113,55 +105,41 @@ class Mine extends Component {
     }
   }
   // 分享
-  _onShare=(i)=>{
+  _onShare = (i) => {
     console.log('share' + i);
   }
 
-
-  table() {
-    const { DataReducer } = this.props;
-    return (
-      <TableComponent 
-        data={MINE_JSON}
-        onClickBadge={this._onClickBadge}
-        onPress={this._onPress}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: this.state.opacityAnim}}}]
-        )}
-      />
-    )
-  }
-  nav() {
-    return (
-      <Navigation 
-        text={'我的'}
-        style={[styles.nav, {
-          opacity: this.state.opacityAnim.interpolate({
-            inputRange: [0, 35 + ScreenWidth / 4.5, 65 + ScreenWidth / 4.5],
-            outputRange: [0.0, 0.0, 1.0]
-          }),
-        }]}
-        isAllowTouch={false}
-      />
-    )
-  }
-  share() {
-    return (
-      <Share ref={'share'} onPress={this._onShare}/>
-    )
-  }
   modal() {
     return (
-      <MineModal ref={'mineModal'} onPress={()=>this._onClickBadge(1,1)}/>
+      <MineModal ref={'mineModal'} onPress={() => this._onClickBadge(1, 1)} />
     )
   }
   render() {
     return (
       <View style={styles.container}>
-        {this.state.needsComponent ? this.table() : null}
-        {this.state.needsComponent ? this.nav() : null}
-        {this.state.needsComponent ? this.share() : null}
-        {this.state.needsComponent ? this.modal() : null}
+        <TableComponent
+          data={MINE_JSON}
+          onClickBadge={this._onClickBadge}
+          onPress={this._onPress}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.state.opacityAnim } } }]
+          )}
+        />
+        <Navigation
+          text={'我的'}
+          style={[styles.nav, {
+            opacity: this.state.opacityAnim.interpolate({
+              inputRange: [0, 35 + ScreenWidth / 4.5, 65 + ScreenWidth / 4.5],
+              outputRange: [0.0, 0.0, 1.0]
+            }),
+          }]}
+          isAllowTouch={false}
+        />
+
+        <Share ref={'share'} onPress={this._onShare} />
+
+        <MineModal ref={'mineModal'} onPress={() => this._onClickBadge(1, 1)} />
+
       </View>
     );
   }

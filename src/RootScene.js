@@ -12,10 +12,13 @@ import { Provider } from 'react-redux';
 import Tabbar from './component/tabbar/Tabbar';
 
 import SplashScreen from 'react-native-splash-screen'
+import { Save } from './common/index';
 
 class RootScene extends Component {
 
     componentDidMount() {
+      console.log("RootScene")
+      Save.initialization();
       this.timer = setTimeout(() => {
         InteractionManager.runAfterInteractions(() => {
             SplashScreen.hide();

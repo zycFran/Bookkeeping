@@ -58,6 +58,8 @@ export default class Save {
     }
     // 获取连续打卡
     static loadPunchContinuous(block) {
+        console.log(1)
+        console.log(Punch)
         Punch.loadPunchContinuous(block);
     }
 
@@ -128,6 +130,10 @@ export default class Save {
         } 
         return s; 
     } 
+
+    static getPunch(){
+        return Punch
+    }
 }
 class Punch {
     // 开始打卡

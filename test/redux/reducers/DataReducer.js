@@ -18,6 +18,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) { 
         case 'initializationDataAction': {
+            console.log(action)
             state = Immutable.fromJS(state);   // 转成immutable
             state = state.merge({
                 category: action.category,
@@ -27,6 +28,7 @@ const reducer = (state = initialState, action) => {
                 homeData: action.homeData,
                 chartData: action.chartData,
             });
+            console.log(state.toJS())
             return state.toJS()    // 转回原生js
         }   
         case 'saveAccountAction': {
