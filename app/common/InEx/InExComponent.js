@@ -16,7 +16,7 @@ import {
   Image,
 } from 'react-native';
 // Common
-import { Line } from '../../common/index';
+import { Line } from '../index';
 import { ScreenWidth, ScreenHeight, StreamColor, TitleColor, BackDefaultColor } from '../../utils/index';
 
 class InExComponent extends Component {

@@ -31,7 +31,6 @@ class MineModal extends Component {
     }
   }
   componentDidMount() {
-    console.log(Save)
     Save.loadPunchContinuous((data)=>{
       this.setState({
         punchContinuous: data + 1

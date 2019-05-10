@@ -17,7 +17,6 @@ import { Save } from './common/index';
 class RootScene extends Component {
 
     componentDidMount() {
-      console.log("RootScene")
       Save.initialization();
       this.timer = setTimeout(() => {
         InteractionManager.runAfterInteractions(() => {
