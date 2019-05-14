@@ -6,10 +6,6 @@ import {
   createNavigationReducer,
 } from 'react-navigation-redux-helpers'
 
-import {
-  Loading,
-} from './pages/index';
-
 import ModalNavigator from './navigator'
 
 import { connect } from 'react-redux'

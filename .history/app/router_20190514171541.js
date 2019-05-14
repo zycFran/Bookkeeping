@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react'
+import { BackHandler, Animated, Easing, Platform, Image } from 'react-native'
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  NavigationActions
+} from 'react-navigation'
+
 
 import {
   createReduxContainer,
   createReactNavigationReduxMiddleware,
   createNavigationReducer,
 } from 'react-navigation-redux-helpers'
-
-import {
-  Loading,
-} from './pages/index';
 
 import ModalNavigator from './navigator'
 

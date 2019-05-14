@@ -5,11 +5,14 @@ import {
   createReactNavigationReduxMiddleware,
   createNavigationReducer,
 } from 'react-navigation-redux-helpers'
-
 import {
+  Home,
+  Mine,
   Loading,
+  Record,
+  Bill,
+  Chart,
 } from './pages/index';
-
 import ModalNavigator from './navigator'
 
 import { connect } from 'react-redux'
