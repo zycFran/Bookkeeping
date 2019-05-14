@@ -52,11 +52,11 @@ class Router extends PureComponent {
   onBackAndroid = () => {
     const currentScreen = getActiveRouteName(this.props.router)
     if (currentScreen === 'Login') {
-      return true  //接管默认行为
+      return true  //默认行为
     }
     if (currentScreen !== 'Home') {
       this.props.dispatch(NavigationActions.back())
-      return true  //接管默认行为
+      return true
     }
     return false;//默认行为
 

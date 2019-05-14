@@ -21,18 +21,6 @@ export const routerMiddleware = createReactNavigationReduxMiddleware(
   'root'
 )
 
-function getActiveRouteName(navigationState) {
-  if (!navigationState) {
-    return null
-  }
-  const route = navigationState.routes[navigationState.index]
-  if (route.routes) {
-    return getActiveRouteName(route)
-  }
-  return route.routeName
-}
-
-
 const App = createReduxContainer(ModalNavigator, 'root')
 
 
@@ -40,27 +28,27 @@ const App = createReduxContainer(ModalNavigator, 'root')
 class Router extends PureComponent {
   componentWillMount() {
     if (Platform.OS === 'android') {
-      BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
     }
-  }
-  componentWillUnmount() {
+}
+componentWillUnmount() {
     if (Platform.OS === 'android') {
-      BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
     }
-  }
+}
 
-  onBackAndroid = () => {
-    const currentScreen = getActiveRouteName(this.props.router)
-    if (currentScreen === 'Login') {
-      return true  //接管默认行为
-    }
-    if (currentScreen !== 'Home') {
-      this.props.dispatch(NavigationActions.back())
-      return true  //接管默认行为
+onBackAndroid = () => {
+    const  navigator  = this.refs.navigator;
+const { navigator } = this.props;  
+    const routers = navigator.getCurrentRoutes();
+    console.log('当前路由长度：'+routers.length);
+    if (routers.length > 1) {
+        navigator.pop();
+        return true;//接管默认行为
     }
     return false;//默认行为
 
-  };
+};
   render() {
     const { app, dispatch, router } = this.props
     if (app.loading) return <Loading />
